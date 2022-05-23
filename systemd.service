@@ -1,0 +1,19 @@
+[Unit]
+Description="NestJS Skeleton"
+
+[Service]
+ExecStart=/bin/bash -c 'source /var/www/nestjs-skeleton/nodeenv/bin/activate && cd /var/www/nestjs-skeleton/server && npm run start'
+User=www-data
+Group=www-data
+Restart=on-failure
+KillSignal=SIGQUIT
+Type=notify
+StandardError=syslog
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
+
+# cp systemd.service /etc/systemd/system/nestjs-skeleton.service && systemctl enable nestjs-skeleton
+# journalctl -u nestjs-skeleton.service -f
+# service nestjs-skeleton start | stop | restart
